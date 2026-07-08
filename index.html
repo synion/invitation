@@ -137,6 +137,14 @@
     color: var(--ink);
     text-shadow: 0 0 14px rgba(49, 231, 255, 0.35);
   }
+  .title .host {
+    display: block;
+    margin-top: 10px;
+    font-size: clamp(20px, 6vw, 30px);
+    color: var(--cyan);
+    text-shadow: 0 0 16px rgba(49, 231, 255, 0.5);
+    letter-spacing: 0.06em;
+  }
 
   .player {
     text-align: center;
@@ -346,7 +354,7 @@
     position: relative;
     z-index: 1;
     margin-top: 16px;
-    display: block;
+    display: none; /* ukryty dla gości; odsłaniany przez ?gen=1 (tylko rodzic) */
     width: min(560px, 100%);
     text-align: center;
   }
@@ -457,6 +465,7 @@
   <h1 class="title">
     <span class="word">Urodziny</span>
     <span class="nine">9</span>
+    <span class="host">Aleksander</span>
   </h1>
 
   <p class="player">
@@ -472,7 +481,7 @@
 
   <!-- DETAILS -->
   <section class="details" id="details" aria-hidden="true">
-    <p class="lead">Cześć! Kończę <b>9 lat</b> i będzie super — zapraszam Cię na moją urodzinową grę!</p>
+    <p class="lead">Cześć! Tu Aleksander — kończę <b>9 lat</b> i będzie super, zapraszam Cię na moją urodzinową grę!</p>
 
     <p class="cd-party">Do imprezy zostało</p>
     <div class="countdown" id="countdown" role="timer" aria-label="Odliczanie do urodzin">
@@ -535,7 +544,14 @@
     var params = new URLSearchParams(location.search);
     var raw = params.get("dla") || params.get("imie") || params.get("name") || params.get("goscie");
     if (raw) {
-      var clean = raw.trim().replace(/\s+/g, " ").slice(0, 60);
+      var clean = raw
+        .replace(/[_+]+/g, " ")          // "jan_kowalski" -> "jan kowalski"
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 60)
+        .replace(/\S+/g, function (w) {   // "jan kowalski" -> "Jan Kowalski"
+          return w.charAt(0).toUpperCase() + w.slice(1);
+        });
       if (clean) document.getElementById("guest").textContent = clean;
     }
 
@@ -573,13 +589,18 @@
     }
     tick();
 
-    // ---- Parent generator ----
+    // ---- Parent generator (ukryty; widoczny tylko przez ?gen=1) ----
+    var genToggleWrap = document.querySelector(".gen-toggle");
     var genToggle = document.getElementById("genToggle");
     var gen = document.getElementById("gen");
     genToggle.addEventListener("click", function () {
       gen.classList.toggle("show");
       if (gen.classList.contains("show")) gen.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
+    if (params.get("gen")) {
+      genToggleWrap.style.display = "block"; // odsłoń przycisk dla rodzica
+      gen.classList.add("show");             // i od razu otwórz generator
+    }
     var nameInput = document.getElementById("guestName");
     var genOut = document.getElementById("genOut");
     var genLink = document.getElementById("genLink");
