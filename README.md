@@ -8,28 +8,30 @@ Interaktywne zaproszenie (styl arcade/neon, motyw ArcadeBee) postawione na GitHu
 
 Każdy gość widzi swoje imię, bo imię przekazujemy w linku przez parametr `?dla=`.
 
-Wzór linku:
+Wzór linku (spację zapiszesz jako `%20` **albo po prostu `_`**):
 
 ```
-https://synion.github.io/invitation/?dla=Imię%20Nazwisko
+https://synion.github.io/invitation/?dla=jan_kowalski
 ```
 
-Spacje w linku zapisuje się jako `%20`. Przykłady:
+`jan_kowalski` wyświetli się jako **Jan Kowalski** — podkreślnik zamienia się
+w spację, a pierwsze litery robią się wielkie automatycznie. Przykłady:
 
-| Gość | Link do wysłania |
+| Wpiszesz w link | Gość zobaczy |
 |------|------------------|
-| Jan Kowalski | `https://synion.github.io/invitation/?dla=Jan%20Kowalski` |
-| Anna Nowak | `https://synion.github.io/invitation/?dla=Anna%20Nowak` |
+| `?dla=jan_kowalski` | **Jan Kowalski** |
+| `?dla=anna_nowak` | **Anna Nowak** |
+| `?dla=Jan%20Kowalski` | **Jan Kowalski** |
 
-### Najprościej — generator w środku strony
+### Najprościej — ukryty generator (tylko dla Ciebie)
 
-Nie trzeba ręcznie sklejać linków. Na dole zaproszenia jest przycisk
-**„⚙ Generator zaproszeń dla rodzica"**:
+Generator jest **niewidoczny dla gości**. Ty otwierasz go tajnym adresem:
 
-1. Wejdź na https://synion.github.io/invitation/
-2. Kliknij **⚙ Generator zaproszeń dla rodzica**.
-3. Wpisz imię i nazwisko gościa → link tworzy się sam.
-4. **Kopiuj** → wklej do SMS / WhatsApp i wyślij.
+👉 **https://synion.github.io/invitation/?gen=1**
+
+1. Wejdź na link z `?gen=1` powyżej — generator otworzy się od razu.
+2. Wpisz imię i nazwisko gościa → link tworzy się sam.
+3. **Kopiuj** → wklej do SMS / WhatsApp i wyślij.
 
 Powtórz dla każdego dziecka. Jeśli ktoś dojdzie później — po prostu wygeneruj
 kolejny link, nic nie trzeba wgrywać.

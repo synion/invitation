@@ -41,6 +41,13 @@ Artifact z claude.ai miał na górze harness `__FRAME_PREAMBLE` (vite preload, p
 rodzica-ramki). Poza claude.ai jest bezużyteczny/szkodliwy. Wyodrębniono czysty content do
 samodzielnego `index.html`; logika i style usera 1:1.
 
+## Aktualizacje (v2) — uwagi rodzica
+- Dodane imię solenizanta **Aleksander** w tytule (pod „9") i w powitaniu.
+- Separatory w imieniu gościa: `?dla=jan_kowalski` → „Jan Kowalski" (`_`/`+` → spacja
+  + kapitalizacja pierwszych liter, działa też z polskimi znakami: `Łukasz Żabka`).
+- Generator linków **ukryty dla gości**; dostępny tylko przez `?gen=1` (furtka rodzica).
+- Zweryfikowano na żywo (curl) + logika imienia przetestowana w Node.
+
 ## TODO / opcjonalne
 - [ ] Podmiana/dodanie finalnych grafik z „claude design", gdy będą gotowe.
 - [ ] (opcja) Przycisk potwierdzenia jako SMS zamiast telefonu — instrukcja w README.
